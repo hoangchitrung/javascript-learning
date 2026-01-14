@@ -12,15 +12,16 @@ function checkLeapYear(year) {
 }
 
 function printDays() {
+    const months31 = [1, 3, 5, 7, 8, 10, 12];
+    const months30 = [4, 6, 9, 11];
     for (let i = 1; i <= 12; i++) {
-        if (i === 1 || i === 3 || i === 5 || i === 7 || i === 8 || i === 10 || i === 12)
-            console.log(`Month number ${i}: 31 days`);
-        else if (i === 4 || i === 6 || i === 9 || i === 11)
-            console.log(`Month number ${i}: 30 days`);
+        if (months31.includes(i))
+            console.log(`Month ${i}: 31 days`);
+        else if (months30.includes(i))
+            console.log(`Month ${i}: 30 days`);
         else {
-            if (checkLeapYear(year))
-                console.log(`Month number ${i}: 29 days`);
-            else console.log(`Month number ${i}: 28 days`);
+            const days = checkLeapYear(year) ? 29 : 28;
+            console.log(`Month ${i}: ${days} days`);
         }
     }
 
