@@ -19,14 +19,12 @@ const fetchPosts = async () => {
 
         // Transfer from text into object
         const posts = await response.json();
-        console.log(posts.length);
 
         for (let i = 0; i < 3; i++) {
             const post = posts[i];
             console.log(`Title: ${post.title.toUpperCase()}`);
             console.log(`Content: ${post.body}`);
             console.log("-------------------------------------");
-            
         }
     } catch (error) {
         console.log("Error: ", error.message);
