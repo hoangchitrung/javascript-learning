@@ -124,7 +124,7 @@ const printStudentInfo = (students) => {
 
 printStudentInfo(students[1]);
 
-// TODO: BÀI 4: QUẢN LÝ KHO HÀNG ĐƠN GIẢN
+// BÀI 4: QUẢN LÝ KHO HÀNG ĐƠN GIẢN
 // Yêu cầu:
 // Tạo mảng products = []
 // Mỗi sản phẩm gồm:
