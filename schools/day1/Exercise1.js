@@ -11,6 +11,19 @@
 // "Username too short"
 // "Password too short"
 
+const login = (username, password) => {
+    if (username.length < 4) {
+        console.log("Username too short");
+    }
+    if (password.length < 6) {
+        console.log("Password too short");
+    } else {
+        console.log("Login successful");
+    }
+}
+
+login("Hoang", "Trungg");
+
 // TODO: BÀI 2: TÍNH TỔNG TIỀN GIỎ HÀNG
 // Yêu cầu:
 // Tạo mảng cart = []
