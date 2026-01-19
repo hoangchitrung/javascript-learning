@@ -1,17 +1,17 @@
-// BÀI 1: KIỂM TRA ĐĂNG NHẬP NGƯỜI DÙNG
+// TODO: BÀI 1: KIỂM TRA ĐĂNG NHẬP NGƯỜI DÙNG
 // Yêu cầu:
 // Viết hàm login(username, password)
 // Điều kiện:
-    // Username phải >= 4 ký tự
-    // Password phải >= 6 ký tự
-    // Nếu hợp lệ:
-        // In "Login successful"
-    // Nếu không:
-        // In lý do cụ thể:
-            // "Username too short"
-            // "Password too short"
+// Username phải >= 4 ký tự
+// Password phải >= 6 ký tự
+// Nếu hợp lệ:
+// In "Login successful"
+// Nếu không:
+// In lý do cụ thể:
+// "Username too short"
+// "Password too short"
 
-// BÀI 2: TÍNH TỔNG TIỀN GIỎ HÀNG
+// TODO: BÀI 2: TÍNH TỔNG TIỀN GIỎ HÀNG
 // Yêu cầu:
 // Tạo mảng cart = []
 // Cho phép nhập 3 sản phẩm, mỗi sản phẩm là object:
@@ -28,7 +28,7 @@
 //         Tổng ban đầu
 //         Tổng sau giảm giá
 
-// BÀI 3: QUẢN LÝ ĐIỂM SINH VIÊN
+// TODO: BÀI 3: QUẢN LÝ ĐIỂM SINH VIÊN
 // Yêu cầu:
 // Tạo mảng students = []
 // Nhập thông tin 3 sinh viên:
@@ -48,7 +48,7 @@
 //     ≥ 5 → Trung bình
 //     < 5 → Yếu
 
-// BÀI 4: QUẢN LÝ KHO HÀNG ĐƠN GIẢN
+// TODO: BÀI 4: QUẢN LÝ KHO HÀNG ĐƠN GIẢN
 // Yêu cầu:
 // Tạo mảng products = []
 // Mỗi sản phẩm gồm:
