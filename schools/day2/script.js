@@ -22,7 +22,7 @@ addBtn.addEventListener('click', () => {
     removeBtn.style.margin = '8px'; // để tạm ở đây
 
     // sự kiện xóa nút
-    removeBtn.onclick = () => taskItem.remove();
+    removeBtn.addEventListener('click', () => taskItem.remove());
 
     // task item thêm nút xóa
     taskItem.appendChild(taskContent);
