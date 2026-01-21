@@ -22,6 +22,7 @@ addBtn.addEventListener('click', () => {
     newTask.appendChild(removeBtn);
     list.appendChild(newTask);
     input.value = "";
+    input.focus();
 });
 
 
