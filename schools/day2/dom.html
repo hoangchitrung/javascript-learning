@@ -1,0 +1,275 @@
+<!--- 
+// DOM (Document Object Model) là mô hình đối tượng biểu diễn toàn bộ cấu trúc HTML/XML của trang web dưới dạng cây (tree), để JavaScript có thể truy cập và thao tác.
+
+// DOM là “cây HTML” được trình duyệt tạo ra để JS có thể đọc – sửa – xóa – thêm nội dung trang web.
+// Nhiệm vụ chính DOM
+// 1. Biểu diễn cấu trúc trang web
+// 2. Cho phép JavaScript truy cập & thao tác UI - Đọc, sửa nội dung; Thêm, xóa, thay thế phần tử; Thay đổi class, style
+// 3. Lắng nghe & xử lý sự kiện người dùng - Click, input, submit, scroll, keydown…
+// 4. Cập nhật giao diện theo thời gian thực - Không reload trang; Tạo trải nghiệm SPA
+
+
+// Trình duyệt load trang web theo thứ tự:
+    // Tải HTML
+    // Parse HTML → tạo DOM Tree
+    // Tải CSS → tạo CSSOM
+    // DOM + CSSOM → Render Tree
+    // Vẽ giao diện
+
+// Cấu trúc DOM Tree
+//HTML
+/*
+<html>
+  <body>
+    <h1>Hello</h1>
+    <p>World</p>
+  </body>
+</html>
+*/
+
+//DOM TREE
+/*
+document
+ └── html
+     └── body
+         ├── h1
+         │   └── "Hello"
+         └── p
+             └── "World"
+*/
+
+// Các loại Node trong DOM
+    // Document	document
+    // Element	thẻ HTML
+    // Text	nội dung text
+    // Attribute	thuộc tính
+    // Comment	
+-->
+
+
+<!--// DOM Tree & Node - DOM (Document Object Model) là cây đối tượng đại diện cho HTML - Mỗi thành phần là một Node
+-->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Select & Manipulation</title>
+  <style>
+    .active {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+    <h1 id="title">DOM Manipulation</h1>
+    <ul id="list">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+    </ul>
+    <button id="btn">Add Item</button>
+
+    
+    <script>
+        // SELECT
+        const title = document.getElementById("title");
+        const items = document.querySelectorAll(".item");
+        const list = document.getElementById("list");
+        const btn = document.getElementById("btn");
+
+        // MANIPULATION
+        title.textContent = "Updated DOM Title";
+        title.classList.add("active");
+
+        // Loop items
+        items.forEach(item => {
+            item.style.color = "blue";
+        });
+
+        // Add new item
+        btn.addEventListener("click", () => {
+            const newItem = document.createElement("li");
+            newItem.textContent = "New Item";
+            newItem.classList.add("item");  // <li class="item">New Item</li>
+            list.appendChild(newItem);
+        });
+
+    </script>
+</body>
+</html> -->
+
+
+<!-- 1. Select & Manipulation
+Select (Selection) là quá trình chọn node/element trong DOM Tree để JavaScript có thể:
+Đọc dữ liệu + Thay đổi nội dung + Thay đổi style + Gắn sự kiện 
+Không select được → không thao tác được
+
+Các cách Select phổ biến
+    getElementById() - const title = document.getElementById("title");
+    getElementsByClassName() - const items = document.getElementsByClassName("item");
+    getElementsByTagName() - const paragraphs = document.getElementsByTagName("p");
+    querySelector() (CSS selector) - const paragraphs = document.getElementsByTagName("p"); - trả về phần tử đầu tiên
+    querySelectorAll() - const allItems = document.querySelectorAll(".item");
+
+DOM MANIPULATION (Thao tác DOM) 
+Thay đổi nội dung
+    textContent - title.textContent = "New Title";
+    innerHTML - title.innerHTML = "<span>New Title</span>"; Dễ gây XSS nếu dùng dữ liệu người dùng
+    innerText - title.innerText = "Hello";
+Thay đổi Attribute 
+    setAttribute() - img.setAttribute("src", "image.jpg");
+    Truy cập trực tiếp - img.src = "image.jpg";
+                        input.value = "Hello";
+Thay đổi CSS (Style Manipulation)
+    title.style.color = "red";
+    title.style.fontSize = "24px";
+    Thao tác class
+        title.classList.add("active");
+        title.classList.remove("active");
+        title.classList.toggle("active");
+Tạo – Thêm – Xóa Element
+    Tạo element
+        const li = document.createElement("li");
+        li.textContent = "New item";
+    Thêm vào DOM
+        ul.appendChild(li);
+    Xóa element
+        li.remove();
+-->
+
+<!-- 2. EVENT DELEGATION (DOM)
+Event Delegation là kỹ thuật: Gắn event cho phần tử CHA,
+thay vì gắn cho từng phần tử CON,
+rồi xác định phần tử con được tương tác thông qua event.target.
+
+ul.addEventListener("click", function (event) {
+  if (event.target.tagName === "LI") {
+    console.log(event.target.textContent);
+  }
+});
+1 event duy nhất  + Áp dụng cho cả phần tử thêm sau này
+-->
+
+<!-- 3. State - DOM
+State là dữ liệu JavaScript mô tả trạng thái hiện tại của ứng dụng.
+Ví dụ state:
+    Danh sách công việc
+    Đã hoàn thành hay chưa
+    Số lượng sản phẩm
+    Bật/tắt dark mode
+    State khác HTML
+DOM là giao diện hiển thị của state. DOM không phải nơi lưu dữ liệu,DOM chỉ là kết quả render từ state.
+State là nguồn sự thật duy nhất - DOM được tạo lại dựa trên state
+Khi có event: 
+    Không sửa DOM trực tiếp
+    Sửa state → render lại DOM
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>State to DOM - Optimized</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input {
+            padding: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        li {
+            cursor: pointer;
+            padding: 6px;
+            user-select: none;
+        }
+
+        li:hover {
+            background-color: #f2f2f2;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Todo List (State → DOM)</h2>
+    <input id="input" placeholder="New todo">
+    <button id="add">Add</button>
+    <ul id="todo"></ul>
+
+    <script>
+        let todos = [
+            { id: 1, text: "Learn JavaScript", done: false },
+            { id: 2, text: "Learn DOM", done: true }
+        ];
+        let nextId = 3;
+
+        // DOM elements
+        const ul = document.getElementById("todo");
+        const input = document.getElementById("input");
+        const addBtn = document.getElementById("add");
+
+        //Render
+        function render() {
+            ul.replaceChildren(
+                ...todos.map(todo => {
+                    const li = document.createElement("li");
+                    li.textContent = todo.text;
+                    li.dataset.id = todo.id;
+                    if (todo.done) {
+                        li.classList.add("done");
+                    }
+                    return li;
+                })
+            );
+        }
+
+        render();
+
+        // Event - Toggle todo (Event → Update State → Render)
+        ul.addEventListener("click", event => {
+            if (event.target.tagName !== "LI") return;
+            const id = Number(event.target.dataset.id);
+            const todo = todos.find(t => t.id === id);
+            if (todo) {
+                todo.done = !todo.done;
+                render();
+            }
+        });
+
+        // Add new todo
+        addBtn.addEventListener("click", () => {
+            const text = input.value.trim();
+            if (!text) return;
+            todos.push({
+                id: nextId++,
+                text,
+                done: false
+            });
+            input.value = "";
+            render();
+        });
+
+        // Add by pressing Enter
+        input.addEventListener("keydown", e => {
+            if (e.key === "Enter") {
+                addBtn.click();
+            }
+        });
+    </script>
+
+</body>
+</html>
