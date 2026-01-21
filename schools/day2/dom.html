@@ -1,34 +1,29 @@
-<!--- 
-// DOM (Document Object Model) là mô hình đối tượng biểu diễn toàn bộ cấu trúc HTML/XML của trang web dưới dạng cây (tree), để JavaScript có thể truy cập và thao tác.
+<!--
+DOM (Document Object Model) là mô hình đối tượng biểu diễn toàn bộ cấu trúc HTML/XML của trang web dưới dạng cây (tree), để JavaScript có thể truy cập và thao tác.
 
-// DOM là “cây HTML” được trình duyệt tạo ra để JS có thể đọc – sửa – xóa – thêm nội dung trang web.
-// Nhiệm vụ chính DOM
-// 1. Biểu diễn cấu trúc trang web
-// 2. Cho phép JavaScript truy cập & thao tác UI - Đọc, sửa nội dung; Thêm, xóa, thay thế phần tử; Thay đổi class, style
-// 3. Lắng nghe & xử lý sự kiện người dùng - Click, input, submit, scroll, keydown…
-// 4. Cập nhật giao diện theo thời gian thực - Không reload trang; Tạo trải nghiệm SPA
+DOM là “cây HTML” được trình duyệt tạo ra để JS có thể đọc – sửa – xóa – thêm nội dung trang web.
+Nhiệm vụ chính DOM
+1. Biểu diễn cấu trúc trang web
+2. Cho phép JavaScript truy cập & thao tác UI - Đọc, sửa nội dung; Thêm, xóa, thay thế phần tử; Thay đổi class, style
+3. Lắng nghe & xử lý sự kiện người dùng - Click, input, submit, scroll, keydown…
+4. Cập nhật giao diện theo thời gian thực - Không reload trang; Tạo trải nghiệm SPA
 
+Trình duyệt load trang web theo thứ tự:
+- Tải HTML
+- Parse HTML → tạo DOM Tree
+- Tải CSS → tạo CSSOM
+- DOM + CSSOM → Render Tree
+- Vẽ giao diện
 
-// Trình duyệt load trang web theo thứ tự:
-    // Tải HTML
-    // Parse HTML → tạo DOM Tree
-    // Tải CSS → tạo CSSOM
-    // DOM + CSSOM → Render Tree
-    // Vẽ giao diện
+Cấu trúc DOM Tree — ví dụ:
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;World&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 
-// Cấu trúc DOM Tree
-//HTML
-/*
-<html>
-  <body>
-    <h1>Hello</h1>
-    <p>World</p>
-  </body>
-</html>
-*/
-
-//DOM TREE
-/*
+DOM TREE (dạng cây):
 document
  └── html
      └── body
@@ -36,29 +31,29 @@ document
          │   └── "Hello"
          └── p
              └── "World"
-*/
 
-// Các loại Node trong DOM
-    // Document	document
-    // Element	thẻ HTML
-    // Text	nội dung text
-    // Attribute	thuộc tính
-    // Comment	
+Các loại Node trong DOM:
+- Document — document
+- Element — thẻ HTML
+- Text — nội dung text
+- Attribute — thuộc tính
+- Comment — chú thích
 -->
 
 
-<!--// DOM Tree & Node - DOM (Document Object Model) là cây đối tượng đại diện cho HTML - Mỗi thành phần là một Node
+<!-- // DOM Tree & Node - DOM (Document Object Model) là cây đối tượng đại diện cho HTML - Mỗi thành phần là một Node
 -->
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <title>Select & Manipulation</title>
-  <style>
-    .active {
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+    <title>Select & Manipulation</title>
+    <style>
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,7 +64,7 @@ document
     </ul>
     <button id="btn">Add Item</button>
 
-    
+
     <script>
         // SELECT
         const title = document.getElementById("title");
@@ -96,7 +91,8 @@ document
 
     </script>
 </body>
-</html> -->
+
+</html>
 
 
 <!-- 1. Select & Manipulation
@@ -165,7 +161,7 @@ Khi có event:
     Sửa state → render lại DOM
 -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -272,4 +268,4 @@ Khi có event:
     </script>
 
 </body>
-</html>
+</html> -->
