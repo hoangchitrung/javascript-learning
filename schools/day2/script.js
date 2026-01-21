@@ -3,7 +3,7 @@ const addBtn = document.getElementById('addBtn');
 const list = document.getElementById('taskList');
 
 addBtn.addEventListener('click', () => {
-    const text = input.value;
+    const text = input.value.trim();
     if (!text) { // nếu input field trống thì sẽ alert
         alert("Don't leave the field empty!");
         return;
