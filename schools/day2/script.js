@@ -21,6 +21,7 @@ addBtn.addEventListener('click', () => {
     // chèn child elements vào bên trong
     newTask.appendChild(removeBtn);
     list.appendChild(newTask);
+    input.value = "";
 });
 
 
