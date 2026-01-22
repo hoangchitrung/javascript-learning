@@ -1,7 +1,51 @@
+// DOM elements
 const input = document.getElementById('taskInput');
 const addBtn = document.getElementById('addBtn');
 const list = document.getElementById('taskList');
 
+// Array để chứa các tasks được thêm vào
+let tasks = [];
+let id = 0;
+
+// Render lại element sau khi thay đổi state
+function render() {
+    list.replaceChildren(
+        ...tasks.map(task => {
+            const li = document.createElement('li');
+            li.textContent = task.text;
+            li.dataset.id = task.id;
+            if (task.done) {
+                li.classList.add("done");
+            }
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = "🗑️";
+            removeBtn.style.margin = '8px';
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tasks = tasks.filter(t => t.id !== task.id);
+                render();
+            });
+            li.appendChild(removeBtn);
+            return li;
+        })
+    );
+}
+
+render();
+
+// Event- toggle todo
+list.addEventListener('click', event => {
+    if (event.target.tagName !== "LI") return;
+    const id = Number(event.target.dataset.id);
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.done = !task.done;
+        render();
+    }
+})
+
+// Thêm tasks item vào list
 addBtn.addEventListener('click', () => {
     const text = input.value.trim();
     if (!text) { // nếu input field trống thì sẽ alert
@@ -9,31 +53,13 @@ addBtn.addEventListener('click', () => {
         return;
     }
 
-    // tạo thẻ cha li (Container)
-    const taskItem = document.createElement("li");
-    taskItem.classList.add("list");
-
-    const taskContent = document.createElement("span");
-    taskContent.textContent = text;
-
-    // nút xóa
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "🗑️";
-    removeBtn.style.margin = '8px'; // để tạm ở đây
-
-    // sự kiện xóa nút
-    removeBtn.addEventListener('click', () => taskItem.remove());
-
-    // task item thêm nút xóa
-    taskItem.appendChild(taskContent);
-    taskItem.appendChild(removeBtn);
-
-    // thêm task item vào list 
-    list.appendChild(taskItem);
+    // thêm task item vào mảng
+    tasks.push({ id: id++, text: text, done: false });
 
     // reset lại input sau khi thêm
     input.value = "";
     input.focus();
+    render();
 });
 
 // Sự kiện ấn nút enter để thêm

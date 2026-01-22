@@ -17,11 +17,11 @@ body {
 
 /* Khung todo */
 .todo-app {
-  width: 280px;          /* 🔽 thu nhỏ list */
+  width: 280px; /* 🔽 thu nhỏ list */
   padding: 16px;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -74,4 +74,35 @@ li button {
   border-radius: 50%;
   padding: 0;
   background: red;
+}
+/* todo list toggle event */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+input {
+  padding: 6px;
+  font-size: 14px;
+}
+
+button {
+  padding: 6px 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+li {
+  cursor: pointer;
+  padding: 6px;
+  user-select: none;
+}
+
+li:hover {
+  background-color: #f2f2f2;
+}
+
+.done {
+  text-decoration: line-through;
+  color: gray;
 }
