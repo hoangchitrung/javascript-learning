@@ -41,7 +41,7 @@ let products = [
   },
 ];
 
-const allProduct = [...products];
+let allProduct = [...products];
 
 // event handle search bar
 searchField.addEventListener('input', () => {
@@ -89,6 +89,7 @@ function render() {
       const price = document.createElement("p");
       price.textContent = `Giá: ${product.price}`;
 
+      // hiển thị sản phẩm
       const available = document.createElement("p");
       available.textContent = product.available ? "Còn Hàng" : "Hết Hàng";
 
@@ -104,7 +105,22 @@ function render() {
         render();
       });
 
-      li.append(img, name, type, price, available);
+      // xóa sản phẩm
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '🗑️';
+      removeBtn.style.fontSize = '15px';
+      // remove event
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        products = products.filter(p => p.id !== product.id);
+
+        allProduct = allProduct.filter(p => p.id !== product.id);
+
+        render();
+      });
+
+      li.append(img, name, type, price, available, removeBtn);
       return li;
     }),
   );
