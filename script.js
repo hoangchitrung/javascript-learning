@@ -3,8 +3,6 @@ const productList = document.getElementById("devices-list");
 const showallBtn = document.getElementById("showAllBtn");
 const availableOnlyBtn = document.getElementById("availableOnlyBtn");
 
-
-
 let products = [
   {
     id: 1,
@@ -83,6 +81,14 @@ function render() {
       if (product.available === false) {
         li.style.backgroundColor = "lightcoral";
       }
+
+      li.addEventListener('click', () => {
+        if (product.available === false)
+          product.available = true;
+        else
+          product.available = false;
+        render();
+      });
 
       li.append(img, name, type, price, available);
       return li;
