@@ -2,6 +2,7 @@
 const productList = document.getElementById("devices-list");
 const showallBtn = document.getElementById("showAllBtn");
 const availableOnlyBtn = document.getElementById("availableOnlyBtn");
+const searchField = document.querySelector('.search-field');
 
 let products = [
   {
@@ -41,6 +42,19 @@ let products = [
 ];
 
 const allProduct = [...products];
+
+// event handle search bar
+searchField.addEventListener('input', () => {
+  const inputText = searchField.value.trim().toLowerCase();
+  if (!inputText) {
+    products = [...allProduct];
+    render();
+    return;
+  }
+
+  products = products.filter(p => p.name.toLowerCase().includes(inputText));
+  render();
+});
 
 // event lọc sản phẩm còn hàng
 availableOnlyBtn.addEventListener('click', () => {
