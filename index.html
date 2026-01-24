@@ -2,26 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>TrungTechStore</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>TrungTechStore</title>
 </head>
 
 <body>
-    <header>
-        <nav id="topnav">
-            <a href="index.html">Home</a>
-            <a href="add.html">Add</a>
-        </nav>
-    </header>
+  <header>
+    <nav id="topnav">
+      <a href="index.html">Home</a>
+      <a href="add.html">Add</a>
+    </nav>
+  </header>
 
-    <div class="products-container">
-        <h1 id="product-title">Product</h1>
-        <ul id="devices-list"></ul>
-    </div>
+  <h1 id="product-title">Product</h1>
 
-    <script src="script.js"></script>
+  <div class="product-filter">
+    <button type="button" id="showAllBtn">Show all</button>
+    <button type="button" id="availableOnlyBtn">Available Only</button>
+  </div>
+
+  <div class="products-container">
+    <ul id="devices-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
