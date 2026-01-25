@@ -22,33 +22,35 @@
   <div class="input-form">
     <div class="input-field">
       <p id="product-label">Product Name:</p>
-      <input type="text" id="product-name">
+      <input type="text" id="product-name" required>
     </div>
 
     <div class="input-field">
       <p id="product-label">Product type:
       <p>
-        <input type="text" id="product-type">
+        <input type="text" id="product-type" required>
     </div>
 
     <div class="input-field">
-      <p id="product-label">Product type:</p>
-      <input type="text" id="product-price">
+      <p id="product-label">Product price:</p>
+      <input type="text" id="product-price" required>
     </div>
 
     <div class="input-field">
       <p id="product-label">Product image:</p>
-      <input type="text" id="product-image">
+      <input type="text" id="product-image" required>
     </div>
 
     <div class="input-field">
-      <p id="product-label">Product Avalable:</p>
-      <input type="text" id="product-available">
+      <p id="product-label">Product Available:</p>
+      <label for="available-true">True <input type="radio" id="available-true" name="product-available" value="true" required></label>
+      <label for="available-false">False <input type="radio" id="available-false" name="product-available" value="false" required></label>
     </div>
+  </div>
 
-    <div class="add-button">
-      <button type="submit" id="submit-button">Add</button>
-    </div>
+  <div class="add-button">
+    <button type="submit" id="submit-button">Add</button>
+  </div>
   </div>
 
   <script src="script.js"></script>

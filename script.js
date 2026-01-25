@@ -1,8 +1,19 @@
 // DOM element
+// index.html
 const productList = document.getElementById("devices-list");
 const showallBtn = document.getElementById("showAllBtn");
 const availableOnlyBtn = document.getElementById("availableOnlyBtn");
-const searchField = document.querySelector('.search-field');
+const searchField = document.querySelector(".search-field");
+
+// add.html
+const productName = document.getElementById("product-name");
+const productType = document.getElementById("product-type");
+const productPrice = document.getElementById("product-price");
+const productImage = document.getElementById("product-image");
+const productAvailable = document.querySelector(
+  'input [name="product-available"]:checked',
+);
+const addBtn = document.getElementById("submit-button");
 
 let products = [
   {
@@ -43,87 +54,111 @@ let products = [
 
 let allProduct = [...products];
 
-// event handle search bar
-searchField.addEventListener('input', () => {
-  const inputText = searchField.value.trim().toLowerCase();
-  if (!inputText) {
-    products = [...allProduct];
-    render();
-    return;
-  }
+let productId = 5;
 
-  products = products.filter(p => p.name.toLowerCase().includes(inputText));
-  render();
-});
+// thêm products
+if (addBtn) {
+  addBtn.addEventListener("click", () => {
+    products.push({
+      id: productId,
+      name: productName.value.trim(),
+      type: productType.value.trim(),
+      price: Number(productPrice.value.trim()),
+      image: productImage.value.trim(),
+      available: productAvailable ? true : false,
+    });
+    productId++;
+    render();
+  });
+}
+
+// event handle search bar
+if (searchField) {
+  searchField.addEventListener("input", () => {
+    const inputText = searchField.value.trim().toLowerCase();
+    if (!inputText) {
+      products = [...allProduct];
+      render();
+      return;
+    }
+
+    products = products.filter((p) => p.name.toLowerCase().includes(inputText));
+    render();
+  });
+}
 
 // event lọc sản phẩm còn hàng
-availableOnlyBtn.addEventListener('click', () => {
-  products = products.filter(p => p.available);
-  render();
-});
+if (availableOnlyBtn) {
+  availableOnlyBtn.addEventListener("click", () => {
+    products = products.filter((p) => p.available);
+    render();
+  });
+}
 
 // event hiển thị tất cả sản phẩm
-showallBtn.addEventListener('click', () => {
-  products = [...allProduct];
-  render();
-})
+if (showallBtn) {
+  showallBtn.addEventListener("click", () => {
+    products = [...allProduct];
+    render();
+  });
+}
 
 // render các sản phẩm
 function render() {
-  productList.replaceChildren(
-    ...products.map((product) => {
-      const li = document.createElement("li");
-      // hiển thị hình ảnh sản phẩm
-      const img = document.createElement("img");
-      img.src = product.image;
-      img.alt = product.name;
+  if (productList) {
+    productList.replaceChildren(
+      ...products.map((product) => {
+        const li = document.createElement("li");
+        // hiển thị hình ảnh sản phẩm
+        const img = document.createElement("img");
+        img.src = product.image;
+        img.alt = product.name;
 
-      // hiển thị tên sản phẩm
-      const name = document.createElement("h3");
-      name.textContent = product.name;
+        // hiển thị tên sản phẩm
+        const name = document.createElement("h3");
+        name.textContent = product.name;
 
-      // hiển thị loại sản phẩm
-      const type = document.createElement("p");
-      type.textContent = `Loại: ${product.type}`;
-      // hiển thị giá sản phẩm
-      const price = document.createElement("p");
-      price.textContent = `Giá: ${product.price}`;
+        // hiển thị loại sản phẩm
+        const type = document.createElement("p");
+        type.textContent = `Loại: ${product.type}`;
+        // hiển thị giá sản phẩm
+        const price = document.createElement("p");
+        price.textContent = `Giá: ${product.price}`;
 
-      // hiển thị sản phẩm
-      const available = document.createElement("p");
-      available.textContent = product.available ? "Còn Hàng" : "Hết Hàng";
+        // hiển thị sản phẩm
+        const available = document.createElement("p");
+        available.textContent = product.available ? "Còn Hàng" : "Hết Hàng";
 
-      if (product.available === false) {
-        li.style.backgroundColor = "lightcoral";
-      }
+        if (product.available === false) {
+          li.style.backgroundColor = "lightcoral";
+        }
 
-      li.addEventListener('click', () => {
-        if (product.available === false)
-          product.available = true;
-        else
-          product.available = false;
-        render();
-      });
+        li.addEventListener("click", () => {
+          if (product.available === false) product.available = true;
+          else product.available = false;
+          render();
+        });
 
-      // xóa sản phẩm
-      const removeBtn = document.createElement('button');
-      removeBtn.textContent = '🗑️';
-      removeBtn.style.fontSize = '15px';
-      // remove event
-      removeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+        // xóa sản phẩm
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "🗑️";
+        removeBtn.style.fontSize = "15px";
+        // remove event
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
 
-        products = products.filter(p => p.id !== product.id);
+          products = products.filter((p) => p.id !== product.id);
 
-        allProduct = allProduct.filter(p => p.id !== product.id);
+          allProduct = allProduct.filter((p) => p.id !== product.id);
 
-        render();
-      });
+          render();
+        });
 
-      li.append(img, name, type, price, available, removeBtn);
-      return li;
-    }),
-  );
+        li.append(img, name, type, price, available, removeBtn);
+        return li;
+      }),
+    );
+  }
 }
 
 render();
