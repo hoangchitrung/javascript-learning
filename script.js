@@ -10,6 +10,7 @@ const productName = document.getElementById("product-name");
 const productType = document.getElementById("product-type");
 const productPrice = document.getElementById("product-price");
 const productImage = document.getElementById("product-image");
+const productImageFile = document.getElementById("product-image-file");
 const addBtn = document.getElementById("submit-button");
 
 let products = [];
@@ -54,29 +55,48 @@ if (addBtn) {
       'input[name="product-available"]:checked',
     );
     const availableValue = selected ? selected.value : "";
+    const file = productImageFile?.files?.[0];
+    const hasImage = !!productImageText || !!file;
 
     if (
       !productNameText ||
       !productTypeText ||
       !productPriceText ||
-      !productImageText ||
+      !hasImage ||
       !availableValue
     ) {
       alert("Please fill all of these fields");
       return;
     }
+
     // thêm sản phẩm vào mảng
-    products.push({
-      id: productId++,
-      name: productName.value.trim(),
-      type: productType.value.trim(),
-      price: Number(productPrice.value.trim()),
-      image: productImage.value.trim(),
-      available: availableValue === "true",
-    });
-    allProduct = [...products];
-    saveProducts();
-    render();
+    const saveProduct = (imageSrc) => {
+      products.push({
+        id: productId++,
+        name: productNameText,
+        type: productTypeText,
+        price: Number(productPriceText),
+        image: imageSrc,
+        available: availableValue === "true",
+      });
+      allProduct = [...products];
+      saveProducts();
+      render();
+    };
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => saveProduct(reader.result);
+      reader.readAsDataURL(file); // => base64
+    } else {
+      saveProduct(productImageText);
+    }
+    alert("Product Added");
+    productName.value = "";
+    productType.value = "";
+    productPrice.value = "";
+    productImage.value = "";
+    productImageFile.value = "";
   });
 }
 
