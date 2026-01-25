@@ -120,7 +120,7 @@ if (searchField) {
 // event lọc sản phẩm còn hàng
 if (availableOnlyBtn) {
   availableOnlyBtn.addEventListener("click", () => {
-    products = products.filter((p) => p.available);
+    products = allProduct.filter((p) => p.available);
     render();
   });
 }
