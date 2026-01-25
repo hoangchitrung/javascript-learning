@@ -10,8 +10,8 @@ const productName = document.getElementById("product-name");
 const productType = document.getElementById("product-type");
 const productPrice = document.getElementById("product-price");
 const productImage = document.getElementById("product-image");
-const productAvailable = document.querySelector(
-  'input [name="product-available"]:checked',
+const productAvailableValue = document.querySelector(
+  'input[name="product-available"]:checked',
 );
 const addBtn = document.getElementById("submit-button");
 
@@ -81,6 +81,22 @@ function loadProducts() {
 // thêm products
 if (addBtn) {
   addBtn.addEventListener("click", () => {
+    const productNameText = productName.value.trim();
+    const productTypeText = productType.value.trim();
+    const productPriceText = productPrice.value.trim();
+    const productImageText = productImage.value.trim();
+    const productAvailable = productAvailableValue;
+
+    if (
+      !productNameText ||
+      !productTypeText ||
+      !productPriceText ||
+      !productImageText ||
+      !productAvailable
+    ) {
+      alert("Please fill all of these fields");
+      return;
+    }
     products.push({
       id: productId,
       name: productName.value.trim(),
@@ -132,6 +148,7 @@ function render() {
     productList.replaceChildren(
       ...products.map((product) => {
         const li = document.createElement("li");
+        li.dataset.id = product.id;
         // hiển thị hình ảnh sản phẩm
         const img = document.createElement("img");
         img.src = product.image;
@@ -156,9 +173,13 @@ function render() {
           li.style.backgroundColor = "lightcoral";
         }
 
+        // xử lí event click vào các phần từ danh sách
         li.addEventListener("click", () => {
-          if (product.available === false) product.available = true;
-          else product.available = false;
+          const id = Number(li.dataset.id);
+          const item = products.find(p => p.id === id);
+          if (!item) return;
+          item.available = !item.available;
+          saveProducts();
           render();
         });
 
@@ -173,7 +194,7 @@ function render() {
           products = products.filter((p) => p.id !== product.id);
 
           allProduct = allProduct.filter((p) => p.id !== product.id);
-
+          saveProducts();
           render();
         });
 
