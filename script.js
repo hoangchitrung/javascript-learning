@@ -56,6 +56,28 @@ let allProduct = [...products];
 
 let productId = 5;
 
+const STORAGE_KEY = "products";
+
+// Lưu products vào localstorage
+function saveProducts() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+}
+
+function loadProducts() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+
+  const saved = JSON.parse(raw);
+
+  if (Array.isArray(saved) && saved.length) {
+    products = saved;
+    allProduct = [...saved];
+
+    // cập nhật product id tiếp theo
+    productId = Math.max(...saved.map((p) => p.id)) + 1;
+  }
+}
+
 // thêm products
 if (addBtn) {
   addBtn.addEventListener("click", () => {
@@ -67,7 +89,8 @@ if (addBtn) {
       image: productImage.value.trim(),
       available: productAvailable ? true : false,
     });
-    productId++;
+    allProduct = [...products];
+    saveProducts();
     render();
   });
 }
@@ -161,4 +184,6 @@ function render() {
   }
 }
 
+// gọi hàm khi khởi chạy web
+loadProducts();
 render();
