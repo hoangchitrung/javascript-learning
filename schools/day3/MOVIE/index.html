@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Movie App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      input {
+        width: 300px;
+        padding: 10px;
+        margin: 20px auto;
+        display: block;
+        border-radius: 5px;
+        border: none;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: #222;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card img {
+        width: 100%;
+        height: 270px;
+        object-fit: cover;
+      }
+
+      .info {
+        padding: 10px;
+      }
+
+      .info h3 {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .info p {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎬 Movie App</h1>
+    <input type="text" id="search" placeholder="Search movie..." />
+
+    <div id="movieContainer" class="container"></div>
+    <img
+      src="imgs/Invincible_Ep_3_Poster_Exugc8sVgAAnVkJ.webp"
+      width="250px"
+      alt=""
+    />
+    <br />
+    <h3>Invincible</h3>
+    <p>🌟 8.7/10</p>
+
+    <img
+      src="imgs/MV5BN2E1MGM3ZjEtYTQwMS00ZWUzLTk1NTctY2U4NzQzY2YwYWRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+      width="250px"
+      alt=""
+    />
+    <br />
+    <h3>Helluva Boss</h3>
+    <p>🌟 7.5/10</p>
+
+    <img
+      src="imgs/MV5BOGMxYWIwMWYtZjY4OC00MzMwLWIyNDEtYWNiZTJlMzg3ODdiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+      width="250px"
+      alt=""
+    />
+    <br />
+    <h3>Hazbin Hotel SS2</h3>
+    <p>🌟 6.7/10</p>
+
+    <!-- <script src="app.js"></script> -->
+  </body>
+</html>

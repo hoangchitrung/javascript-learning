@@ -1,0 +1,17 @@
+SIMPLE ANIME APP
+Yêu cầu
+Lấy danh sách anime từ nguồn dữ liệu trực tuyến và lưu lại để sử dụng.
+Hiển thị danh sách anime ra trang web, mỗi anime gồm:
+    Tên anime
+    Hình ảnh
+    Số tập (nếu có)
+    Có ô tìm kiếm anime theo tên:
+Kết quả tìm kiếm thay đổi ngay khi người dùng nhập.
+Chỉ tìm trong dữ liệu đã lưu, không lấy lại dữ liệu mới.
+Nếu không tìm thấy anime:
+    Hiển thị thông báo “No anime found”
+Ẩn danh sách anime.
+Khi xóa nội dung tìm kiếm:
+Hiển thị lại toàn bộ danh sách anime ban đầu.
+Giao diện tự cập nhật khi dữ liệu hoặc kết quả tìm kiếm thay đổi.
+Có thông báo cho người dùng khi dữ liệu đang được tải.
