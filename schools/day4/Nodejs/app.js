@@ -141,39 +141,39 @@
 
 // const http = require("http");
 
-const server = http.createServer((req, res) => {
-    res.end("Hello Node.js");
-});
+// const server = http.createServer((req, res) => {
+//     res.end("Hello Node.js");
+// });
 
-server.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
-});
+// server.listen(3000, () => {
+//     console.log("Server running at http://localhost:3000");
+// });
 
 // req (request): Thông tin client gửi lên  or URL, method, headers, body…
 // res (response): Thông tin server trả về, status code, headers, body…
 
-// const http = require("http");
+const http = require("http");
 
-// const server = http.createServer((req, res) => {
-//   if (req.url === "/" && req.method === "GET") {
-//     res.end("Home page");
-//   }
-//   else if (req.url === "/about" && req.method === "GET") {
-//     res.end("About page");
-//   }
-//   else  if (req.url === "/api/user" && req.method === "GET") {
-//     const user = { name: "Alice", age: 22 };
+const server = http.createServer((req, res) => {
+    if (req.url === "/" && req.method === "GET") {
+        res.end("Home page");
+    }
+    else if (req.url === "/about" && req.method === "GET") {
+        res.end("About page");
+    }
+    else if (req.url === "/api/user" && req.method === "GET") {
+        const user = { name: "Alice", age: 22 };
 
-//     res.setHeader("Content-Type", "application/json");
-//     res.end(JSON.stringify(user)); //Trả JSON (giống API backend)
-//   }
-//   else {
-//     res.statusCode = 404;
-//     res.end("Not Found");
-//   }
-// });
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(user)); //Trả JSON (giống API backend)
+    }
+    else {
+        res.statusCode = 404;
+        res.end("Not Found");
+    }
+});
 
-// server.listen(3000);
+server.listen(3000);
 
 // Luồng xử lý HTTP Server
 // Client

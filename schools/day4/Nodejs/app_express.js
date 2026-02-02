@@ -34,16 +34,16 @@
 // Nếu Node.js thuần là xây nhà từ gạch, thì Express là bộ khung có sẵn.
 
 // Node.js thuần:
-    // Phải tự parse URL
-    // Tự kiểm tra method (GET, POST…)
-    // Tự viết routing
-    // Code dài, khó đọc khi app lớn
+// Phải tự parse URL
+// Tự kiểm tra method (GET, POST…)
+// Tự viết routing
+// Code dài, khó đọc khi app lớn
 
 // Express:
-    // Có routing rõ ràng
-    // Có middleware
-    // Có cấu trúc logic chuẩn backend
-    // Viết ít code hơn – dễ bảo trì
+// Có routing rõ ràng
+// Có middleware
+// Có cấu trúc logic chuẩn backend
+// Viết ít code hơn – dễ bảo trì
 // Luồng xử lý request
 //     Client
 //     ↓
@@ -60,10 +60,10 @@
 //     Client
 
 // Route = đường đi + hành động
-    // /movies + GET → lấy danh sách phim
-    // /movies + POST → thêm phim
-    // /movies/:id + PUT → sửa phim
-    // /movies/:id + DELETE → xóa phim
+// /movies + GET → lấy danh sách phim
+// /movies + POST → thêm phim
+// /movies/:id + PUT → sửa phim
+// /movies/:id + DELETE → xóa phim
 
 // Express ánh xạ: (URL + HTTP Method) → Function xử lý
 
@@ -164,113 +164,113 @@ app.use(express.json());
 
 // Log middleware
 app.use((req, res, next) => {
-  console.log(`[${req.method}] ${req.url}`);
-  next();
+    console.log(`[${req.method}] ${req.url}`);
+    next();
 });
 
 // Database 
 let users = [
-  { id: 1, username: "admin", password: "123456" },
-  { id: 2, username: "hanh", password: "password" }
+    { id: 1, username: "admin", password: "123456" },
+    { id: 2, username: "hanh", password: "password" }
 ];
 
 // Routes
 
 // Trang chủ
 app.get("/", (req, res) => {
-  res.send(" Login & User API is running");
+    res.send(" Login & User API is running");
 });
 
 // Login
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+    const { username, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(400).json({ message: "Missing data" });
-  }
-
-  const user = users.find(
-    u => u.username === username && u.password === password
-  );
-
-  if (!user) {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
-
-  res.json({
-    message: "Login successful",
-    user: {
-      id: user.id,
-      username: user.username
+    if (!username || !password) {
+        return res.status(400).json({ message: "Missing data" });
     }
-  });
+
+    const user = users.find(
+        u => u.username === username && u.password === password
+    );
+
+    if (!user) {
+        return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.json({
+        message: "Login successful",
+        user: {
+            id: user.id,
+            username: user.username
+        }
+    });
 });
 
 
 
 // READ ALL
 app.get("/users", (req, res) => {
-  res.json(users);
+    res.json(users);
 });
 
 // READ ONE
 app.get("/users/:id", (req, res) => {
-  const user = users.find(u => u.id === Number(req.params.id));
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
-  res.json(user);
+    const user = users.find(u => u.id === Number(req.params.id));
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
 });
 
 //  CREATE
 app.post("/users", (req, res) => {
-  const { username, password } = req.body;
+    const { username, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(400).json({ message: "Missing data" });
-  }
+    if (!username || !password) {
+        return res.status(400).json({ message: "Missing data" });
+    }
 
-  const newUser = {
-    id: Date.now(),
-    username,
-    password
-  };
+    const newUser = {
+        id: Date.now(),
+        username,
+        password
+    };
 
-  users.push(newUser);
-  res.status(201).json(newUser);
+    users.push(newUser);
+    res.status(201).json(newUser);
 });
 
 //  UPDATE
 app.put("/users/:id", (req, res) => {
-  const user = users.find(u => u.id === Number(req.params.id));
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
+    const user = users.find(u => u.id === Number(req.params.id));
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
 
-  const { username, password } = req.body;
-  if (username) user.username = username;
-  if (password) user.password = password;
+    const { username, password } = req.body;
+    if (username) user.username = username;
+    if (password) user.password = password;
 
-  res.json({
-    message: "User updated",
-    user
-  });
+    res.json({
+        message: "User updated",
+        user
+    });
 });
 
 //  DELETE
 app.delete("/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const exists = users.some(u => u.id === id);
+    const id = Number(req.params.id);
+    const exists = users.some(u => u.id === id);
 
-  if (!exists) {
-    return res.status(404).json({ message: "User not found" });
-  }
+    if (!exists) {
+        return res.status(404).json({ message: "User not found" });
+    }
 
-  users = users.filter(u => u.id !== id);
-  res.json({ message: "User deleted" });
+    users = users.filter(u => u.id !== id);
+    res.json({ message: "User deleted" });
 });
 
 // Start Server
 app.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
+    console.log("Server running at http://localhost:3000");
 });
