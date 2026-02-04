@@ -1,4 +1,4 @@
-import { users } from "../data/user.data.js";
+import { users } from "../data/data.js";
 
 export function updateUserById(id, { name, email }) {
     const userId = Number(id);

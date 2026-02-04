@@ -34,6 +34,7 @@
 
 import express from "express";
 import userRouter from "./routes/user.route.js";
+import productRouter from "./routes/product.route.js";
 
 const app = express();
 const PORT = 3000;
@@ -41,7 +42,7 @@ const PORT = 3000;
 app.use(express.json());
 
 app.use(userRouter);
-
+app.use(productRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running at port 3000`);
