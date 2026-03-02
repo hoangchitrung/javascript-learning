@@ -6,8 +6,7 @@ import {
     updateMovie,
     deleteMovie
 } from "../controllers/movieController.js";
-import { protect } from "../middlewares/authMiddleware.js";
-import { authorize } from "../middlewares/roleMiddleware.js";
+import { protect, authorize } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 // router.get("/", protect, getMovies);
 router.get("/", getMovies);
